@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1.
+    Posts
+
+  each post in posts
+    div
+      a(href=post.link) #{post.title}
+      div
+        #{post.date}  *
+        each tag in post.tags
+          #{tag}
+
