@@ -33,18 +33,18 @@ router.get('/', function(req, res, next) {
 
 router.get('/posts/:name', function(req, res, next) {
   var filename = req.params.name;
-  var postA = posts.filter(file => {return file.link == "/posts/" + filename})
-  res.render('post', {post: postA[0]})
+  var postList = posts.filter(file => {return file.link == "/posts/" + filename})
+  res.render('post', {post: postList[0]})
 })
 
 router.get('/filter/:name', function(req, res, next) {
   var tagname = req.params.name;
-  var postA = posts.filter(file => {
+  var postList = posts.filter(file => {
     var checkResults = file.tags.filter(tag =>
       { return tag.link == '/filter/' + tagname})
     return checkResults.length > 0
   })
-  res.render('filtered_posts', {posts: postA})
+  res.render('filtered_posts', {posts: postList})
 })
 
 module.exports = router;
