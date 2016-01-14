@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  a(href="/") Back to list
+  h1.
+    Filtered posts
+
+  each post in posts
+    div
+      a(href=post.link) #{post.title}
+    #{post.date}
+    include ./date_tags.jade
