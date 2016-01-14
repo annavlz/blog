@@ -1,3 +1,5 @@
+'use strict'
+
 var express = require('express');
 var router = express.Router();
 var md = require("markdown").markdown;
@@ -7,8 +9,8 @@ var fs = require("fs");
 var files = fs.readdirSync('./posts')
 
 function parseFile (name) {
-  var filePath = './posts/' + name
-  var file = fs.readFileSync(filePath, "utf-8").split('\n')
+  let filePath = './posts/' + name
+  let file = fs.readFileSync(filePath, "utf-8").split('\n')
   return {
     date: name.slice(0,10),
     title: file[1].slice(8, -1),
@@ -32,15 +34,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/posts/:name', function(req, res, next) {
-  var filename = req.params.name;
-  var postList = posts.filter(file => {return file.link == "/posts/" + filename})
+  let filename = req.params.name;
+  let postList = posts.filter(file => {return file.link == "/posts/" + filename})
   res.render('post', {post: postList[0]})
 })
 
 router.get('/filter/:name', function(req, res, next) {
-  var tagname = req.params.name;
-  var postList = posts.filter(file => {
-    var checkResults = file.tags.filter(tag =>
+  let tagname = req.params.name;
+  let postList = posts.filter(file => {
+    let checkResults = file.tags.filter(tag =>
       { return tag.link == '/filter/' + tagname})
     return checkResults.length > 0
   })
