@@ -19,7 +19,7 @@ function parseFile (name) {
       }
     }),
     body: md.toHTML(file.slice(5).join('\n')),
-    link: filePath.slice(0, -2) + 'html'
+    link: filePath.slice(1, -2) + 'html'
   }
 }
 
@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/posts/:name', function(req, res, next) {
   var filename = req.params.name;
-  var postA = posts.filter(file => {return file.link == "./posts/" + filename})
+  var postA = posts.filter(file => {return file.link == "/posts/" + filename})
   res.render('post', {post: postA[0]})
 })
 
@@ -44,7 +44,7 @@ router.get('/filter/:name', function(req, res, next) {
       { return tag.link == '/filter/' + tagname})
     return checkResults.length > 0
   })
-  res.render('index', {posts: postA})
+  res.render('filtered_posts', {posts: postA})
 })
 
 module.exports = router;
