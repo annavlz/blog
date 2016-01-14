@@ -12,7 +12,12 @@ function parseFile (name) {
   return {
     date: name.slice(0,10),
     title: file[1].slice(8, -1),
-    tags: file[2].slice(6).split(' '),
+    tags: file[2].slice(6).split(' ').map(tag => {
+      return {
+        name: tag,
+        link: "/filter/" + tag
+      }
+    }),
     body: md.toHTML(file.slice(5).join('\n')),
     link: filePath.slice(0, -2) + 'html'
   }

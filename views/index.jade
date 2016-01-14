@@ -7,8 +7,5 @@ block content
   each post in posts
     div
       a(href=post.link) #{post.title}
-      div
-        #{post.date}  *
-        each tag in post.tags
-          #{tag}
-
+    #{post.date}
+    include ./dateTags.jade
