@@ -5,7 +5,8 @@ block content
     Posts
 
   each post in posts
-    div
+    h2
       a(href=post.link) #{post.title}
-    #{post.date}
+    !{post.date} &nbsp
     include ./date_tags.jade
+    p
